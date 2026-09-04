@@ -16,4 +16,7 @@ demo = gr.ChatInterface(
     title="Study Vision",
     description="Get your doubts clarified here!"
 )
-demo.launch()
+demo.launch(
+    server_name="0.0.0.0",
+    server_port=int(os.environ.get("PORT", 7860))
+)
