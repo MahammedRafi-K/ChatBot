@@ -5,12 +5,15 @@ import os
 load_dotenv()
 API_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=API_KEY)
-def model(msg,history):
-    response = client.models.generate_content(
-        model="gemini-3.6-flash",
-        contents=msg
-    )
-    return response.text
+def model(msg, history):
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=msg
+        )
+        return response.text
+    except Exception as e:
+        return f"Error: {e}"
 demo = gr.ChatInterface(
     fn=model,
     title="Study Vision",
